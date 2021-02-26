@@ -1,0 +1,30 @@
+https://api.data.gov.sg/v1/transport/traffic-images	
+PSI Information
+
+
+Controls Accept header.
+Example Value
+Schema
+{
+  "api_info": {
+    "status": "healthy"
+  },
+  "items": [
+    {
+      "timestamp": "2021-02-26T01:04:02.175Z",
+      "cameras": [
+        {
+          "timestamp": "2021-02-26T01:04:02.175Z",
+          "camera_id": 0,
+          "image_id": 0,
+          "image": "string",
+          "image_metadata": {
+            "height": 0,
+            "width": 0,
+            "md5": "string"
+          }
+        }
+      ]
+    }
+  ]
+}
