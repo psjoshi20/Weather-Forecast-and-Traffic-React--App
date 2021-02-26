@@ -17,8 +17,11 @@ export default App
 
 // fetch api (https://data.gov.sg/dataset/traffic-images) traffic 
 // https://data.gov.sg/dataset/weather-forecast  weather 
+//  24 hour weather and 4 day weather 
+//  https://api.data.gov.sg/v1/environment/2-hour-weather-forecast
 //  real time datafrom https:data.gov.sg/developer#realtime.
-//
+// Get API keys
+
 
 // Features:
 // 1. Allow the user to choose a date and time, then show a list of locations with traffic cam
