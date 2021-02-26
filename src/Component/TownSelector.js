@@ -9,23 +9,36 @@ const [results, setResults] = useState('');
 
 const onSearch =() => {
   fetch (
-    // fetch API ''
-    // dont use this -> this does not contain temp ' https://api.data.gov.sg/v1/environment/2-hour-weather-forecast'
+   
     'https://api.data.gov.sg/v1/environment/4-day-weather-forecast'
   )
-  .then((response) => response.json())
-   .then(data => console.log(data));
-// update the results
-  //  .then((results) => setResults(results));
+    .then((response) => response.json())
+   
+    .then((results) => setResults(results));
 };
 
+const onKeyDown = (event) => {
+  if (event.keyCode === 13) {
+    onSearch();
+  }
+};
+//  .then(data => console.log(data));
+    
+    // dont use this -> this does not contain temp ' https://api.data.gov.sg/v1/environment/2-hour-weather-forecast'
+// update the results
+
+// console.log("Second  fetched Traffic API");
+// fetch('https://api.data.gov.sg/v1/transport/traffic-images')
+//   .then(response => response.json())
+//   // .then(data => console.log(data));
+//   console.log("Second  fetched Traffic API");
 return(
     <div className="app-container">
       
       <div className="weather-traffic-wrapper"></div>
     
       <Row>
-         <div class="col"> 
+         <div className="col"> 
               <h1>Enter your Location </h1>
          </div>
        </Row>
@@ -38,12 +51,13 @@ return(
             onChange={(event) => setTown(event.target.value)}
             // value will be the currently selected location or town
             value={town}
+             onKeyDown={onKeyDown}
           />
         </Col>
       </Row>
       <Row>
         <Col>
-                <Button onClick={onSearch}> Check Weather </Button>
+                <Button onClick={() => onSearch(town)}> Check Weather </Button>
         </Col>
       </Row>
 

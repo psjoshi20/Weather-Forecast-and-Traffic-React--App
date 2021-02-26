@@ -1,43 +1,51 @@
 import React, {Component} from 'react';
-// import { render } from 'react-dom';
-
-import WeatherCard from './Component/Weather.js';
+// import WeatherCard from './Component/Weather.js';
 
 import TownSelector from './Component/TownSelector.js';
-import LocationTraffic from './Component/LocationTraffic.js';
+// import LocationTraffic from './Component/LocationTraffic.js';
 import './App.css';
+import {Container} from 'react-bootstrap';
+import UseFetch from './hooks/UseFetch'
 
-function App() {
+const  App= () => {
+// destructure the returned values
+  const {data, error, isLoading, setUrl} = UseFetch();
   return (
-    <>
-       <div className="header">
-          <h1>welcome - header</h1>
-      </div>
-      <>
-       <p> Date and Time</p>
-      </>
-    <div>
-       <WeatherCard
-          dt={1602104400 * 1000}
-          low="22.67"
-          high="24.39"
-          forecast="Clear"
-          icon="01d"
+    <Container className="App">
+    <TownSelector onSearch={(town) => 
+      setUrl(`https://api.data.gov.sg/v1/environment/4-day-weather-forecast'`)} />
+</Container>
+
+
+    // <>
+    //    <div className="header">
+    //       <h1>welcome - header</h1>
+    //   </div>
+    //   <>
+    //    <p> Date and Time</p>
+    //   </>
+    // <div>
+    //    <WeatherCard
+    //       dt={1602104400 * 1000}
+    //       low="22.67"
+    //       high="24.39"
+    //       forecast="Clear"
+    //       icon="01d"
           //  date = "2021-02-27"
           // forecast ="Fair."
           //   timestamp = "2021-02-26T05:18:00+08:00"
-       />
-     <TownSelector/>
-     <LocationTraffic />
-     <>
-     <p> Footer</p>
-     </>
-    </div>
-    </>
-  )
-}
+    //    />
+    //  <TownSelector/>
+    //  <LocationTraffic /> 
+    //  <>
+    //  <p> Footer</p>
+    //  </>
+    // </div>
+    // </>
+  );
+};
 
-export default App
+export default App;
 
 // fetch api (https://data.gov.sg/dataset/traffic-images) traffic 
 // https://data.gov.sg/dataset/weather-forecast  weather 
