@@ -1,24 +1,39 @@
 import React, {Component} from 'react';
 // import { render } from 'react-dom';
-import WeatherTraffic from './Component/WeatherTraffic.js';
+
 import WeatherCard from './Component/Weather.js';
+
+import TownSelector from './Component/TownSelector.js';
+import LocationTraffic from './Component/LocationTraffic.js';
 import './App.css';
 
 function App() {
   return (
+    <>
+       <div className="header">
+          <h1>welcome - header</h1>
+      </div>
+      <>
+       <p> Date and Time</p>
+      </>
     <div>
-      <WeatherTraffic/>
-     <WeatherCard
-      dt={1602104400 * 1000}
-      temp_min="22.67"
-      temp_max="24.39"
-     main="Clear"
-     icon="01d"
-    //  date = "2021-02-27"
-    // forecast ="Fair."
-    //   timestamp = "2021-02-26T05:18:00+08:00"
-     />
+       <WeatherCard
+          dt={1602104400 * 1000}
+          low="22.67"
+          high="24.39"
+          forecast="Clear"
+          icon="01d"
+          //  date = "2021-02-27"
+          // forecast ="Fair."
+          //   timestamp = "2021-02-26T05:18:00+08:00"
+       />
+     <TownSelector/>
+     <LocationTraffic />
+     <>
+     <p> Footer</p>
+     </>
     </div>
+    </>
   )
 }
 
