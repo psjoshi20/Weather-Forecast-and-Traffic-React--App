@@ -21,7 +21,7 @@ const UseFetch = (initialUrl) => {
         setIsLoading(false);
         setError(error);
       });
-      // dependency array 
+ 
   }, [url]);
 
   return { data, error, isLoading, setUrl };

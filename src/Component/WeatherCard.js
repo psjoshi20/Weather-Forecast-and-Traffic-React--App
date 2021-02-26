@@ -1,9 +1,7 @@
-// First component card component
 import React from 'react';
 import {Card} from 'react-bootstrap';
 
 const WeatherCard = ({dt, low, high, forecast, icon}) => {
-  // create a date object with Date class constructor
   const date = new Date(dt);
   return (
     <Card style={{width: '18rem'}}>
@@ -14,13 +12,13 @@ const WeatherCard = ({dt, low, high, forecast, icon}) => {
       />
       <Card.Body>
         <Card.Title>{forecast}</Card.Title>
-        {/*  datetime is received in milliseconds, let's turn into local date time */}
+      
         <p>
           {date.toLocaleDateString()} - {date.toLocaleTimeString()}
         </p>
-        {/* minimum temperature */}
+   
         <p>Min: {low}</p>
-        {/* maximum temperature */}
+
         <p>Max: {high}</p>
       </Card.Body>
     </Card>
