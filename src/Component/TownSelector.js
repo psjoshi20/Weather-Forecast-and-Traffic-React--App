@@ -11,8 +11,9 @@ const onSearch =() => {
     'https://api.data.gov.sg/v1/environment/4-day-weather-forecast'
   )
     .then((response) => response.json())
-   
-    .then((results) => setResults(results));
+  
+    .then((result) => console.log(result));
+    // .then((results) => setResults(results));
 };
 
 const onKeyDown = (event) => {
@@ -46,7 +47,7 @@ return(
       </Row>
       <Row>
         <Col>
-                <Button onClick={() => onSearch(town)}> Check Weather </Button>
+                <Button onClick={() => onSearch(town)}> Get Weather </Button>
         </Col>
       </Row>
 
