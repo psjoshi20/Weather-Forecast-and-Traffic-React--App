@@ -17,13 +17,13 @@ const[ weather, setWeather ] =useState([]);
   return (
     <Container className="App">
         <Header />
-      <BootstrapDate />
-      <SelectBox />
-      <WeatherList />
+        <BootstrapDate />
+        <SelectBox />
+        <WeatherList />
        {/* <TownSelector/> */}
-     <LocationTraffic/>
-     <WeatherCard />
-     <Footer />
+        <LocationTraffic/>
+        <WeatherCard />
+        <Footer />
   
     </Container>
 
