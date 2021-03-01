@@ -5,7 +5,8 @@ body {
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-     background-image: url('./assets/background.jpeg'); 
+    
+     background-image: url('./assets/bkground-sky.jpeg'); 
     background-size: cover;
     background-repeat: no-repeat;
   }
