@@ -1,0 +1,93 @@
+{
+  "items": [
+    {
+      "update_timestamp": "2021-03-03T06:02:12+08:00",
+      "timestamp": "2021-03-03T05:23:00+08:00",
+      "forecasts": [
+        {
+          "temperature": {
+            "low": 24,
+            "high": 34
+          },
+          "date": "2021-03-04",
+          "forecast": "Afternoon thundery showers.",
+          "relative_humidity": {
+            "low": 50,
+            "high": 95
+          },
+          "wind": {
+            "speed": {
+              "low": 10,
+              "high": 25
+            },
+            "direction": "NE"
+          },
+          "timestamp": "2021-03-04T00:00:00+08:00"
+        },
+        {
+          "temperature": {
+            "low": 24,
+            "high": 34
+          },
+          "date": "2021-03-05",
+          "forecast": "Afternoon thundery showers.",
+          "relative_humidity": {
+            "low": 55,
+            "high": 95
+          },
+          "wind": {
+            "speed": {
+              "low": 10,
+              "high": 20
+            },
+            "direction": "ENE"
+          },
+          "timestamp": "2021-03-05T00:00:00+08:00"
+        },
+        {
+          "temperature": {
+            "low": 24,
+            "high": 33
+          },
+          "date": "2021-03-06",
+          "forecast": "Afternoon thundery showers.",
+          "relative_humidity": {
+            "low": 55,
+            "high": 95
+          },
+          "wind": {
+            "speed": {
+              "low": 10,
+              "high": 20
+            },
+            "direction": "NE"
+          },
+          "timestamp": "2021-03-06T00:00:00+08:00"
+        },
+        {
+          "temperature": {
+            "low": 24,
+            "high": 33
+          },
+          "date": "2021-03-07",
+          "forecast": "Afternoon thundery showers.",
+          "relative_humidity": {
+            "low": 55,
+            "high": 95
+          },
+          "wind": {
+            "speed": {
+              "low": 10,
+              "high": 20
+            },
+            "direction": "NE"
+          },
+          "timestamp": "2021-03-07T00:00:00+08:00"
+        }
+      ]
+    }
+  ],
+  "api_info": {
+    "status": "healthy"
+  }
+}

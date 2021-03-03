@@ -1,5 +1,6 @@
 import React, { useState , useEffect }  from 'react';
 import './App.css';
+
 function flattenData(data) {
   if(data && 
     data["items"] && data["items"].length > 0 && 
