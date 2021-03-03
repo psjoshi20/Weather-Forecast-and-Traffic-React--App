@@ -1,7 +1,6 @@
 import React, { useState , useEffect }  from 'react';
 import './App.css';
 import flattenData from './Component/JoinArray';
-import { WeatherRow, WeatherTable } from './WeatherDisp';
 // import{ tsConverter }  from "./Component/Utility.js";
 import DatePicker from "react-datepicker";
 
@@ -35,20 +34,11 @@ function flatHelper (data) {
         return(aa1);
        }
 }
-
-
-
-
 function  App() {
   const [data, setData] = useState([]);
-  const [flatData, setFlatData] = useState([]);
   const [name, setName] =useState(null);
   const [timestamp, setTimestamp]=useState();
   const [selectedDate , setSelectedDate] = useState(null);
-  let handleColor = time => {
-    return time.getHours() > 12 ? "text-success" : "text-error";
-
-  };
   // console.log("step1");
 
   const getData =() => {
@@ -66,8 +56,8 @@ function  App() {
     })
     .then(function(myJson) {
       console.log(myJson)
-      setFlatData(flatHelper(myJson));
-      // setData(myJson)
+      flatHelper(myJson);
+      setData(myJson)
     });
 
   }
@@ -80,28 +70,32 @@ useEffect(() => {
   <div className="App">
       <p>Press click to Select date and Time  </p>
       <DatePicker 
-      showTimeSelect
+      selected={selectedDate} 
       onChange={date => setSelectedDate(date)} 
       dateFormat ='dd/MM/yyyy'
       isClearable
       showYearDropdown
       scrollableMonthYearDropdown
-      timeClassName={handleColor}
-  
-         />     
+      />     
       <h1>  here is json in table format  </h1>
-      <div >
-        {
-              // data && data.length>0 && data.map((areametadata)=><p>{areametadata.name.label_location.longitude}</p>)
-              // data && 
-              //     data["items"] && data["items"].length > 0 && 
-              //     data["items"][0]["forecasts"] && data["items"][0]["forecasts"].length > 0 && 
-              //     data["items"][0]["forecasts"].map((forecast)=><tr><td>{forecast["area"]}</td><td>{forecast["forecast"]}</td></tr>)
-            flatData && flatData.length > 0 && 
-            flatData.map((fd1) => { <WeatherTable warr1={fd1}></WeatherTable> } )
-        }
-       
-      </div>
+    <table border="1">
+  
+   {
+      // data && data.length>0 && data.map((areametadata)=><p>{areametadata.name.label_location.longitude}</p>)
+      data && 
+          data["items"] && data["items"].length > 0 && 
+          data["items"][0]["forecasts"] && data["items"][0]["forecasts"].length > 0 && 
+          data["items"][0]["forecasts"].map((forecast)=><tr><td>{forecast["area"]}</td><td>{forecast["forecast"]}</td></tr>)
+   }
+    {/* {
+      data && data.length>0 && data.map((items))=><p>{items.forecasts.forecast}</p>)
+    }  */}
+
+{/* {
+       data && data.length>0 && data.map((item)=><p>{item.about}</p>)
+     } */}
+  
+  </table>
  </div>
   );
 }
