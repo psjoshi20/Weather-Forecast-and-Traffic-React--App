@@ -1,6 +1,14 @@
 import React, { useState , useEffect }  from 'react';
 import './App.css';
 
+// import{ tsConverter }  from "./Component/Utility.js";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+
+// CSS Modules, react-datepicker-cssmodules.css
+// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+
 function flattenData(data) {
   if(data && 
     data["items"] && data["items"].length > 0 && 
@@ -20,6 +28,7 @@ function  App() {
   const [data, setData] = useState([]);
   const [name, setName] =useState(null);
   const [timestamp, setTimestamp]=useState();
+  const [selectedDate , setSelectedDate] = useState(null);
   // console.log("step1");
 
   const getData =() => {
@@ -49,7 +58,11 @@ useEffect(() => {
  },[])
  return (
   <div className="App">
-    <h1>  here is json </h1>
+      <p>Press click to Select date and Time  </p>
+      <DatePicker 
+      selected={selectedDate} 
+      onChange={date => setSelectedDate(date)} />     
+      <h1>  here is json in table format  </h1>
     <table border="1">
   
    {
