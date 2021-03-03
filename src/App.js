@@ -61,7 +61,12 @@ useEffect(() => {
       <p>Press click to Select date and Time  </p>
       <DatePicker 
       selected={selectedDate} 
-      onChange={date => setSelectedDate(date)} />     
+      onChange={date => setSelectedDate(date)} 
+      dateFormat ='dd/MM/yyyy'
+      isClearable
+      showYearDropdown
+      scrollableMonthYearDropdown
+      />     
       <h1>  here is json in table format  </h1>
     <table border="1">
   
