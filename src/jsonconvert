@@ -1,0 +1,264 @@
+Creating API mockups for local testing and development allows you to work in a faster development environment. One way 
+to implement an API mockup is to copy the JSON data to a local file in your project directory and make your fetch or 
+GET calls to that file instead of the real database. As fetching data from an external source is still an asynchronous task, 
+there are a number of errors you can run into while loading data from a JSON file. This guide will demonstrate how to 
+correctly fetch data from a JSON file in your React app and consume it on the frontend.
+
+Setting Up a Local JSON file
+In a blank Create React App project, create a local JSON file named data.json inside the public directory.
+Your Fetch API calls made from a React component always looks for files or any other relevant assets inside 
+this public directory. Create-React-App doesn't put your assets automatically inside this directory during 
+compilation so you have to do this manually.
+
+Next, put some dummy JSON data inside this file. For demonstration purposes, the JSON data used in the example 
+below is generated from JSON Generator. If you are using your own JSON, ensure that it is correctly formatted.
+
+Consuming Local JSON Data Using Fetch API
+The next step you need to perform is fetching this data correctly. Create a method getData() that fetches local 
+JSON using JavaScript's fetch API and call it inside useEffect as shown below.
+
+const getData=()=>{
+    fetch('data.json'
+    ,{
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }
+    }
+    )
+      .then(function(response){
+        console.log(response)
+        return response.json();
+      })
+      .then(function(myJson) {
+        console.log(myJson);
+      });
+  }
+  useEffect(()=>{
+    getData()
+  },[])
+
+  The path to your JSON file should be either 'data.json' or './data.json'. Other relative paths might 
+  land you a 404 error while trying to access that resource. You also need to pass in some headers indicating 
+  the Content-Type and Accept as application/json to   tell your client that you are trying to access 
+  and accept some JSON resource from a server.
+
+  Loading Data into the Component
+Create a state using the useState hook to store this data and render it on the DOM.
+
+1
+const [data,setData]=useState([]);
+javascript
+Assign the JSON data inside your fetch call to this state variable.
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+const getData=()=>{
+    fetch('data.json'
+    ,{
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }
+    }
+    )
+      .then(function(response){
+        console.log(response)
+        return response.json();
+      })
+      .then(function(myJson) {
+        console.log(myJson);
+        setData(myJson)
+      });
+  }
+javascript
+Depending on your JSON's structure, put relevant checks inside the return statement of your component before rendering or loading this data. The GET call for your JSON resource is made when the component mounts on the DOM. However, since it is an asynchronous task your return statement is executed before the API call is made. Because you are updating the state after fetching the required data, a re-rendering of the component updates the DOM with JSON data stored inside the state. The JSON used here is an array of objects, so the relevant check would be to check if the state exists and consequently verify if it has a non-zero length as shown below.
+
+1
+2
+3
+4
+5
+6
+7
+ return (
+    <div className="App">
+     {
+       data && data.length>0 && data.map((item)=><p>{item.about}</p>)
+     }
+    </div>
+ );
+jsx
+If your JSON returns an object, simply check your state to be not null at the time of outputting it, otherwise you might get an error.
+
+Have a look at the entire code below.
+
+import React,{useState,useEffect} from 'react';
+import './App.css';
+
+function App() {
+  const [data,setData]=useState([]);
+  const getData=()=>{
+    fetch('data.json'
+    ,{
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }
+    }
+    )
+      .then(function(response){
+        console.log(response)
+        return response.json();
+      })
+      .then(function(myJson) {
+        console.log(myJson);
+        setData(myJson)
+      });
+  }
+  useEffect(()=>{
+    getData()
+  },[])
+  return (
+    <div className="App">
+     {
+       data && data.length>0 && data.map((item)=><p>{item.about}</p>)
+     }
+    </div>
+  );
+}
+
+export default App;
+
+javascript
+Conclusion
+You can also use a powerful third-party library called Axios to make GET calls to a local 
+JSON file instead of fetch API. By loading data directly from a local JSON file you can save your 
+server from tons of unnecessary calls in local development. Alternately, by saving the JSON file as a
+ regular JavaScript file and exporting the entire object globally, you can use it inside any component
+  and save a considerable amount of development time when working with external APIs.
+
+
+LEARN MORE
+
+We use cookies to make interactions with our websites and services easy and meaningful. For more 
+information about the cookies we use or to
+import React,{useState,useEffect} from 'react';
+import './App.css';
+
+function App() {
+  const [data,setData]=useState([]);
+  const getData=()=>{
+    fetch('data.json'
+    ,{
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }
+    }
+    )
+      .then(function(response){
+        console.log(response)
+        return response.json();
+      })
+      .then(function(myJson) {
+        console.log(myJson);
+        setData(myJson)
+      });
+  }
+  useEffect(()=>{
+    getData()
+  },[])
+  return (
+    <div className="App">
+     {
+       data && data.length>0 && data.map((item)=><p>{item.about}</p>)
+     }
+    </div>
+  );
+}
+
+export default App;
+
+Conclusion
+You can also use a powerful third-party library called Axios to make GET calls to a local 
+JSON file instead of fetch API. By loading data directly from a local JSON file you can save
+ your server from tons of unnecessary calls in local development. Alternately, by saving the 
+ JSON file as a regular JavaScript file and exporting the entire object globally,
+  you can use it inside any component and save a considerable amount of development 
+  time when working with external APIs.
+
+
+import React, { useState , useEffect }  from 'react';
+import './App.css';
+
+function  App() {
+  const [data, setData] = useState([]);
+  const [name, setName] =useState(null);
+  const [timestamp, setTimestamp]=useState();
+  // console.log("step1");
+
+  const getData =() => {
+        fetch('data.json',
+        {
+          headers : { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+         }
+   )            
+    .then(function(response) {
+      console.log(response)
+      return response.json();
+    })
+    .then(function(myJson) {
+      console.log(myJson)
+    setData(myJson)
+    });
+
+  }
+ 
+console.log("step3");
+useEffect(() => {
+  getData()
+ },[])
+ return (
+  <div className="App">
+    <h1>  here is json
+  
+   {
+      // data && data.length>0 && data.map((areametadata)=><p>{areametadata.name.label_location.longitude}</p>)
+      data && data["items"] && data["items"].length > 0 && data["items"].map((areametadata)=><p>{areametadata["cameras"][0]["timestamp"]}</p>)
+   }
+    {/* {
+      data && data.length>0 && data.map((items))=><p>{items.forecasts.forecast}</p>)
+    }  */}
+
+{/* {
+       data && data.length>0 && data.map((item)=><p>{item.about}</p>)
+     } */}
+  
+  </h1>
+ </div>
+  );
+}
+
+export default App;
+
+

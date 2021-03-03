@@ -1,14 +1,10 @@
-https://api.data.gov.sg/v1/transport/traffic-images	
-
-  "api_info": {
-    "status": "healthy"
-  },
-  "items": [
+{
+    "items": [
     {
-      "timestamp": "2021-02-26T01:04:02.175Z",
+      "timestamp": "2021-02-26T16:00:30.712Z",
       "cameras": [
         {
-          "timestamp": "2021-02-26T01:04:02.175Z",
+          "timestamp": "2021-02-26T16:00:30.712Z",
           "camera_id": 0,
           "image_id": 0,
           "image": "string",

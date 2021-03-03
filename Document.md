@@ -1,14 +1,60 @@
-notes-steps
+ Welcome -
 
-1)create-react-app
-2)clear up project files
-3) create project files structure
+Table of Contents
+User Story -
 
-create - React Functional Component, React Hooks, React Fetch API,
-4) get API data
-5) create first card component
-6)style
-7) city selector component
-8)usestate Hook
-9) Displaying API results
-10) to display our results we create another state
+ Features:
+// 1. Allow the user to choose a date and time, then show a list of locations with traffic cam
+// photos for the specified date and time. (API 1: Traffic Images)
+
+// 2. Show the list of locations from API 1 (Traffic Images) only has lat/long without name, use a
+// reverse geocoding service (API 2: Weather Forecast) to display more user friendly location
+// names
+// 3. When the user selects a location from the list, show the traffic cam photo, and also the
+// weather info for that location from API 2 (Weather Forecast) (or the nearest available
+// weather info depending on what API 2 can return)
+// As the location information are returned in latitude and longitude format, you are required to look for
+// an API that does reverse geo-coding to show its human readable names instead.
+
+
+1. Concept- A realtime weather application in React using the Fetch API and geolocation
+Once we get our data in our app we will be able to see information like temperature, location, humidity, wind speed and direction. These we will draw from one of the many free weather data sources available on data.gov.sg.
+ 
+
+2. Project Setup
+create a new React project using the following command in our Terminal / Bash.-
+ create-react-app weather-traffic-website> This will create a new React app called weather-traffic-website  in our current directory using the create-react-app boilerplate package.
+ install React-Bootstrap, Bootstrap  using our computer's terminal or our editor's integrated one (I am using VS Code).
+ Delete all the files we won't need.
+ Clear out index.css and App.css 
+ add .gitignore files before commiting project into GIT Repo
+ initialtiate git repo for the porject
+ Follow all instructions from github
+
+
+3. Initialisation & Basic Styling
+  create Functional  App Component to render OUr ther React Componets. create Mock UI
+  Components needed -  Input date and time, display traffic camera locations (area/city)
+  Select City/area/location and then  dispaly weather, display traffic 
+ 
+4. Getting Our API data And Adding It To Our Project
+   Visit data.gov.sg - search for the required API 
+   API 1 -->
+   API 2 -->
+   API 3 -->
+
+5. Fetching Our Data
+we now need a way to get our weather data. For that, we will create a function called getWeatherData
+we now need a way to get our Traffic  data. For that, we will create a function called getTrafficData
+we now need a way to get our Areametadatga data. For that, we will create a function called getAreaData
+
+
+
+6. Getting The Traffic Camera's Position
+
+
+7. Adding Placeholder for Date and Time inout Data And Styling Our Container
+
+8. Passing Data To Our Components: 
+9. Passing Data To Our Components: 
+10. Passing Data To Our Components: 

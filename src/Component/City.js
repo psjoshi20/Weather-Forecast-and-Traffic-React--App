@@ -19,7 +19,6 @@ class SelectBox extends React.Component{
         
     }    
         
-
     submit(){
         console.warn(this.state)
     }
@@ -29,9 +28,6 @@ class SelectBox extends React.Component{
             <div>
                 <div className="row">
                     <div className="col-md-6 offset-md-3">
-                        
-                        {/* <h3>Bootstrap Select Box</h3><br /> */}
-                        
                             <div className="form-row">
                                 <div className="form-group col-md-6">
                                     <label>City :</label>

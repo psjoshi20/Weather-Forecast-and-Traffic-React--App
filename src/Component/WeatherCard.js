@@ -10,12 +10,17 @@ const WeatherCard = ({dt, low, high, forecast, icon}) => {
         <div class="card">
            
             <label class="text-light">Photo</label>
-            <label class="text-light date text-center">07 MAR</label>
+            <label class="text-light date text-center">{date}</label>
             <div class="card-block">
                 <h4>Singapore Weather</h4>
                 <span class="text-danger">This is the  Weather card</span>
                 <p> Forecast, low, high ,date </p>
+                 <p>{date.toLocaleDateString()}</p>
+
                 <button type="button" class="btn btn-warning text-light">Click For More</button>
+                 <p> Low: {low}</p>
+                 <p> High : {high}</p>
+                 <p> Forecast: {forecast}</p>
             </div>
          </div>
       </div>
