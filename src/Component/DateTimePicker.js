@@ -1,3 +1,5 @@
+
+// examples
 () => {
     const [startDate, setStartDate] = useState(new Date());
     const ExampleCustomTimeInput = ({ date, value, onChange }) => (
@@ -34,3 +36,14 @@
       />
     );
   };
+
+  ------------------------------------------------------
+  <p>Press click to Select date and Time  </p>
+      <DatePicker 
+      selected={selectedDate} 
+      onChange={date => setSelectedDate(date)} 
+      dateFormat ='dd/MM/yyyy'
+      isClearable
+      showYearDropdown
+      scrollableMonthYearDropdown
+      />     

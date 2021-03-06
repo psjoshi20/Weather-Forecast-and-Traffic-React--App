@@ -1,14 +1,7 @@
 import React, { useState , useEffect }  from 'react';
 import './App.css';
 import flattenData from './Component/JoinArray';
-import {  WeatherTable } from './Component/WeatherDisp';
-// import{ tsConverter }  from "./Component/Utility.js";
-import DatePicker from "react-datepicker";
 
-import "react-datepicker/dist/react-datepicker.css";
-
-// CSS Modules, react-datepicker-cssmodules.css
-// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 // function flattenData(data) {
 //   if(data && 
@@ -35,21 +28,13 @@ function flatHelper (data) {
         return(aa1);
        }
 }
-
-
-
-
 function  App() {
   const [data, setData] = useState([]);
-  const [flatData, setFlatData] = useState([]);
   const [name, setName] =useState(null);
   const [timestamp, setTimestamp]=useState();
-  const [selectedDate , setSelectedDate] = useState(null);
-  let handleColor = time => {
-    return time.getHours() > 12 ? "text-success" : "text-error";
-
-  };
-  // console.log("step1");
+  const [timestampImage, setTimeStampImage] =useState([])  
+  // timestampImage --> this state is to store flatten data with  timestamp, cameraId , image 
+  console.log("step1");
 
   const getData =() => {
         fetch('data2.json',
@@ -66,43 +51,31 @@ function  App() {
     })
     .then(function(myJson) {
       console.log(myJson)
-      setFlatData(flatHelper(myJson));
-      // flatData
+      flatHelper(myJson);
+      setData(myJson)
     });
 
   }
-  
  
-// console.log("step3")
+console.log("step3");
 useEffect(() => {
   getData()
  },[])
  return (
   <div className="App">
-      <p>Press click to Select date and Time  </p>
-      <DatePicker 
-      showTimeSelect
-      onChange={date => setSelectedDate(date)} 
-      dateFormat ='dd/MM/yyyy'
-      isClearable
-      showYearDropdown
-      scrollableMonthYearDropdown
-      timeClassName={handleColor}
-  
-         />     
+      
       <h1>  here is json in table format  </h1>
-      <div >
-        {
-              // data && data.length>0 && data.map((areametadata)=><p>{areametadata.name.label_location.longitude}</p>)
-              // data && 
-              //     data["items"] && data["items"].length > 0 && 
-              //     data["items"][0]["forecasts"] && data["items"][0]["forecasts"].length > 0 && 
-              //     data["items"][0]["forecasts"].map((forecast)=><tr><td>{forecast["area"]}</td><td>{forecast["forecast"]}</td></tr>)
-            flatData && flatData.length > 0 && 
-            flatData.map((fd1) => { return(<WeatherTable warr1={fd1}></WeatherTable>) } )
-        }
-        <h2>End of table sect</h2>
-      </div>
+    <table border="1">
+  
+   {
+      // data && data.length>0 && data.map((areametadata)=><p>{areametadata.name.label_location.longitude}</p>)
+      data && 
+          data["items"] && data["items"].length > 0 && 
+          data["items"][0]["forecasts"] && data["items"][0]["forecasts"].length > 0 && 
+          data["items"][0]["forecasts"].map((forecast)=><tr><td>{forecast["area"]}</td><td>{forecast["forecast"]}</td></tr>)
+   }
+  
+  </table>
  </div>
   );
 }

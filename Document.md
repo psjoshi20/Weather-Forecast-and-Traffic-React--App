@@ -17,6 +17,15 @@ User Story -
 // an API that does reverse geo-coding to show its human readable names instead.
 
 
+What are you supposed to do?
+// ● Create a frontend application based on the requirements and mock-up above
+// ● Create proper UI components for the application
+// ● Handle the responsiveness of the UI in the application
+// ● Create the necessary CSS styling ensure the interface is aesthetically pleasing
+// ● Develop an application with good user-experience (UX)
+// ● Feel free to change the design of the application if you have a better idea
+// ● You will be asked to showcase and explain to us some of your development
+
 1. Concept- A realtime weather application in React using the Fetch API and geolocation
 Once we get our data in our app we will be able to see information like temperature, location, humidity, wind speed and direction. These we will draw from one of the many free weather data sources available on data.gov.sg.
  
@@ -39,9 +48,9 @@ create a new React project using the following command in our Terminal / Bash.-
  
 4. Getting Our API data And Adding It To Our Project
    Visit data.gov.sg - search for the required API 
-   API 1 -->
-   API 2 -->
-   API 3 -->
+   API 1 -->  "https://api.data.gov.sg/v1/transport/traffic-images"
+   API 2 -->  "https://api.data.gov.sg/v1/environment/4-day-weather-forecast "
+   API 3 --> "https://api.data.gov.sg/v1/environment/2-hour-weather-forecast"
 
 5. Fetching Our Data
 we now need a way to get our weather data. For that, we will create a function called getWeatherData

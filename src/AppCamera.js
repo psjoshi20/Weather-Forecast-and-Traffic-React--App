@@ -1,48 +1,35 @@
 import React, { useState , useEffect }  from 'react';
 import './App.css';
-import flattenData from './Component/JoinArray';
-// import{ tsConverter }  from "./Component/Utility.js";
-import DatePicker from "react-datepicker";
+import flattenTrafficData from "./Component/flattenTrafficData";
+// import flattenData from './Component/JoinArray';
+//  this temp App fotr getting traffic images from api 1 
 
-import "react-datepicker/dist/react-datepicker.css";
+// #fetch traffic API , store the json data into an object, get the path using get_in() function, flatten the data and then pass it to 
+// a component which will disply in UI in the timestap, loation format 
+// before passing to UI component conver the long and lat into area name using reverse geocoding service
 
-// CSS Modules, react-datepicker-cssmodules.css
-// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
-// function flattenData(data) {
-//   if(data && 
-//     data["items"] && data["items"].length > 0 && 
-//     data["items"][0]["forecasts"] && data["items"][0]["forecasts"].length > 0 ) {
-//       const a1 = data["items"][0]["forecasts"];
-//       const b1 = data["area_metadata"];
-//       // const t1 = a1.map((a1d) => { return([a1d, b1.filter((f1) => { return(f1.name === a1d.area);})[0]["label_location"] ] ) ; });
-//       const t1 = a1.map((a1d) => { return({...a1d, ...b1.filter((f1) => { return(f1.name === a1d.area);})[0]["label_location"] } ) ; });
-//       console.log("Joined data");console.log(t1);
-//       return(t1);
-//     } else {
-//       return([]);
-//     }
+// function flatHelper (data3) {
+//   if(data3 && 
+//        data3["items"] && data3["items"].length > 0 && 
+//        data3["items"][0]["cameras"] && data3["items"][0]["cameras"].length > 0 ) { 
+//         // const aa1 = flattenTrafficData(data["items"][0]["cameras"], data[""], "","");
+//         const aa1 = data3["items"].map((xx1) => { return(flattenTrafficData(xx1["camera"], data3["timeastamp"]));});
+//         console.log("Joined data");console.log(aa1);
+//         console.log(aa1.length); console.log(aa1[0].length);
+//         return(aa1);
+//        }
 // }
-function flatHelper (data) {
-  if(data && 
-       data["items"] && data["items"].length > 0 && 
-       data["items"][0]["forecasts"] && data["items"][0]["forecasts"].length > 0 ) { 
-        // const aa1 = flattenData(data["items"][0]["forecasts"], data["area_metadata"], "name","area");
-        const aa1 = data["items"].map((xx1) => { return(flattenData(xx1["forecasts"], data["area_metadata"]));});
-        console.log("Joined data");console.log(aa1);
-        console.log(aa1.length); console.log(aa1[0].length);
-        return(aa1);
-       }
-}
 function  App() {
-  const [data, setData] = useState([]);
+  const [data3, setData3] = useState([]);
   const [name, setName] =useState(null);
   const [timestamp, setTimestamp]=useState();
-  const [selectedDate , setSelectedDate] = useState(null);
-  // console.log("step1");
+  const [timestampImage, setTimeStampImage] =useState([])  
+  // timestampImage --> this state is to store flatten data with  timestamp, cameraId , image 
+  console.log("step1");
 
-  const getData =() => {
-        fetch('data2.json',
+  const getData3 =() => {
+        fetch('data3.json',
         {
           headers : { 
             'Content-Type': 'application/json',
@@ -57,43 +44,28 @@ function  App() {
     .then(function(myJson) {
       console.log(myJson)
       flatHelper(myJson);
-      setData(myJson)
+      setData3(myJson)
     });
 
   }
  
 console.log("step3");
 useEffect(() => {
-  getData()
+  getData3()
  },[])
  return (
   <div className="App">
-      <p>Press click to Select date and Time  </p>
-      <DatePicker 
-      selected={selectedDate} 
-      onChange={date => setSelectedDate(date)} 
-      dateFormat ='dd/MM/yyyy'
-      isClearable
-      showYearDropdown
-      scrollableMonthYearDropdown
-      />     
+      
       <h1>  here is json in table format  </h1>
     <table border="1">
   
    {
       // data && data.length>0 && data.map((areametadata)=><p>{areametadata.name.label_location.longitude}</p>)
-      data && 
-          data["items"] && data["items"].length > 0 && 
-          data["items"][0]["forecasts"] && data["items"][0]["forecasts"].length > 0 && 
-          data["items"][0]["forecasts"].map((forecast)=><tr><td>{forecast["area"]}</td><td>{forecast["forecast"]}</td></tr>)
+      data3 && 
+          data3["items"] && data3["items"].length > 0 && 
+          data3["items"][0]["cameras"] && data3["items"][0]["cameras"].length > 0 && 
+          data3["items"][0]["cameras"].map(()=><tr><td>{}</td><td>{}</td></tr>)
    }
-    {/* {
-      data && data.length>0 && data.map((items))=><p>{items.forecasts.forecast}</p>)
-    }  */}
-
-{/* {
-       data && data.length>0 && data.map((item)=><p>{item.about}</p>)
-     } */}
   
   </table>
  </div>
