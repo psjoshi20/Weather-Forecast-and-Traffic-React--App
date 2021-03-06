@@ -1,6 +1,6 @@
 import React, { useState , useEffect }  from 'react';
 import './App.css';
-import flattenTrafficData from "./Component/flattenTrafficData";
+import tarfficDataHash from "./Component/flattenTrafficData";
 // import flattenData from './Component/JoinArray';
 //  this temp App fotr getting traffic images from api 1 
 
@@ -22,7 +22,7 @@ import flattenTrafficData from "./Component/flattenTrafficData";
 // }
 function  App() {
   const [data3, setData3] = useState([]);
-  const [name, setName] =useState(null);
+  
   const [timestamp, setTimestamp]=useState();
   const [timestampImage, setTimeStampImage] =useState([])  
   // timestampImage --> this state is to store flatten data with  timestamp, cameraId , image 
@@ -43,8 +43,8 @@ function  App() {
     })
     .then(function(myJson) {
       console.log(myJson)
-      flatHelper(myJson);
-      setData3(myJson)
+      // flatHelper(myJson);
+      setData3(tarfficDataHash(myJson))
     });
 
   }
@@ -61,10 +61,13 @@ useEffect(() => {
   
    {
       // data && data.length>0 && data.map((areametadata)=><p>{areametadata.name.label_location.longitude}</p>)
-      data3 && 
-          data3["items"] && data3["items"].length > 0 && 
-          data3["items"][0]["cameras"] && data3["items"][0]["cameras"].length > 0 && 
-          data3["items"][0]["cameras"].map(()=><tr><td>{}</td><td>{}</td></tr>)
+    //   data3 && 
+    //       data3["items"] && data3["items"].length > 0 && 
+    //       data3["items"][0]["cameras"] && data3["items"][0]["cameras"].length > 0 && 
+    //       data3["items"][0]["cameras"].map((vc1)=><tr><td>{vc1[0]}</td><td>{vc1[2]}</td></tr>)
+          data3 && 
+          Object.keys(data3).length > 0 && 
+          Object.keys(data3).map((vc1) => <tr><td>{vc1}</td><td>{data3[vc1]}</td></tr>)         
    }
   
   </table>
