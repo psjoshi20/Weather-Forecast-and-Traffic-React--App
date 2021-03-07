@@ -34,12 +34,21 @@ Once we get our data in our app we will be able to see information like temperat
 create a new React project using the following command in our Terminal / Bash.-
  create-react-app weather-traffic-website> This will create a new React app called weather-traffic-website  in our current directory using the create-react-app boilerplate package.
  install React-Bootstrap, Bootstrap  using our computer's terminal or our editor's integrated one (I am using VS Code).
- Delete all the files we won't need.
- Clear out index.css and App.css 
- add .gitignore files before commiting project into GIT Repo
- initialtiate git repo for the porject
- Follow all instructions from github
-
+ Delete unwanted files .
+ Clear out index.css and App.css .
+ add .gitignore files before commiting project into GIT Repo.
+ initialtiate git repo for the porject.  Follow all instructions from github.
+ project structure -
+ public folder - sample json dats from APIs
+ project folder - 
+     src - 
+          apis-
+          assets- images, icons.
+          Components - project component and styling for that component
+          App.js -  This is the file for App Component. App Component is the main component in React which acts as a container for all other components.
+          App.css
+          index.js
+          index.css
 
 3. Initialisation & Basic Styling
   create Functional  App Component to render OUr ther React Componets. create Mock UI

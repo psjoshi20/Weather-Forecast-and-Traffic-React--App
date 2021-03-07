@@ -1,19 +1,5 @@
 import React from "react";
 
-// function flattenTrafficData(data3) {
-
-
-//     return (
-//         <div>
-//             <h1>traffic images</h1>
-            
-//         </div>
-//     )
-// }
-
-
-
-
 // #fetch traffic API , store the json data into an object, get the path using get_in() function, flatten the data and then pass it to 
 // a component which will disply in UI in the timestap, loation format 
 // before passing to UI component conver the long and lat into area name using reverse geocoding service
@@ -33,14 +19,17 @@ function get_in2(data1, path1) {
 
 // eg.
 function flattenTrafficData (cdata) {
-    var img =["camera_id","timestamp", "image"]; console.log(img);
+    var img =["camera_id","timestamp", "image"]; 
+    var img2 =[["camera_id"],["timestamp"], ["image"], ["location", "latitude"] , ["location", "longitude"]]; 
+    // console.log(img);
     var rr1 = [...Array(get_in2(cdata,["items", 0, "cameras"]).length).keys()];
     // map over it and assign a varible to it
     var images = rr1.map((i1) => { 
-                                    return(img.map((i2) => {
+                                    return(img2.map((i2) => {
                                     return(
                                             get_in2(cdata,
-                                            ["items", 0 , "cameras", i1,i2]))
+                                            // ["items", 0 , "cameras", i1,i2]))
+                                            ["items", 0 , "cameras", i1, ...i2]))
                                     }))
                                 }
     );
@@ -51,7 +40,7 @@ function flattenTrafficData (cdata) {
 function tarfficDataHash(cdata) {
     var images =  flattenTrafficData(cdata);
     var retHash1 = images.reduce(
-        (ac1,v1) => { if( ! ac1[v1[1]]) {ac1[v1[1]] = []; }; ac1[v1[1]].push(v1[2]); return(ac1);  },
+        (ac1,v1) => { if( ! ac1[v1[1]]) {ac1[v1[1]] = []; }; ac1[v1[1]].push(v1[2] + "---latitude=" + v1[3] + "---longitude=" + v1[4] +"---camid=" + v1[0] + "---"); return(ac1);  },
         {}
     ); 
     return(retHash1);

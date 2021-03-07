@@ -1,0 +1,96 @@
+Reverse Geocode(SVY21)
+/privateapi/commonsvc/revgeocodexy
+
+Usage:
+/privateapi/commonsvc/revgeocodexy?location={x,y}&token={token}&buffer={buffer}&addressType={addressType}
+
+Examples:
+With optional variables:
+https://developers.onemap.sg/privateapi/commonsvc/revgeocodexy?location=24291.97788882387,31373.0117224489&token=0v9hsciobp1ifa5bgpkin21cs3&revgeocodexy?&buffer=100&addressType=all
+
+Without optional variables:
+https://developers.onemap.sg/privateapi/commonsvc/revgeocodexy?location=24291.97788882387,31373.0117224489&token=0v9hsciobp1ifa5bgpkin21cs3
+
+Example Response (Buildings):{
+   "GeocodeInfo":[
+      {
+         "BUILDINGNAME":"NEW TOWN PRIMARY SCHOOL",
+         "BLOCK":"300",
+         "ROAD":"TANGLIN HALT ROAD",
+         "POSTALCODE":"148812",
+         "XCOORD":"24303.327416",
+         "YCOORD":"31333.331116",
+         "LATITUDE":"1.2996418106402365",
+         "LONGITUDE":"103.80011086725216",
+         "LONGTITUDE":"103.80011086725216"
+      }
+   ]
+}
+Example Response (Roads):{  
+   "GeocodeInfo":[  
+      {  
+         "ROAD":"STADIUM WALK",
+         "XCOORD":"32964.401642579214",
+         "YCOORD":"31636.744777400974",
+         "LATITUDE":"1.3023856",
+         "LONGITUDE":"103.8779260",
+         "LONGTITUDE":"103.8779260"
+      }
+   ]
+}
+Example Response (Other Features):{  
+   "GeocodeInfo":[  
+      {  
+         "FEATURE_NAME":"KALLANG FIELDS",
+         "XCOORD":"33159.1597983748",
+         "YCOORD":"31783.4077108439",
+         "LATITUDE":"1.3037119357111573",
+         "LONGITUDE":"103.87967601502585",
+         "LONGTITUDE":"103.87967601502585"
+      }
+   ]
+}
+HTML Example:<html>
+    <head>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+        <script>
+        function GeoXY(){
+        $.ajax({
+        url: 'https://developers.onemap.sg/privateapi/commonsvc/revgeocodexy?location=24291.97788882387,31373.0117224489&token=0v9hsciobp1ifa5bgpkin21cs3?revgeocodexy?&buffer=100&addressType=all',
+        success: function(result){
+            //Set result to a variable for writing
+            var TrueResult = JSON.stringify(result);
+            document.write(TrueResult);
+            }});
+        }
+
+        GeoXY();
+      </script>
+    </head>
+</html>
+This API retrieves a building address that lies within the defined buffer/radius of the specified x, y coordinates.
+
+Road names are returned within 20m of the specified coordinates in JSON format.
+
+Fields that are without value will be shown as “NIL”.Except for empty buildings name, the response will return “null”.
+Parameters
+Variables	Description
+location {x, y}
+Required	X,Y Coordinates in SVY21 format.
+token
+Required	API token provided by the Authentication Service.
+buffer
+Optional	Default: 10
+Values: 0-500 (in meters)
+Rounds up all buildings in a circumference from a point like a compass; and searches building addresses within the buffer/radius range.
+addressType
+Optional	Default: All
+Values: HDB, All
+Provide user the selection of All or HDB properties within the buffer/radius. If HDB is chosen, this will filter to show all HDB-related building.
+otherFeatures
+Optional	Default:N
+Values: Y, N
+Enables users to retrieve information on reservoirs, playgrounds, jetties and many more.
+A Maximum of 500m buffer/radius applies for buildings and 20m buffer/radius for roads. Please use server side proxy page to use REST API as some clients do not send Referrer information.
+Longer response time is expected for searching of addresses within a buffer/radius range. The system will return a maximum of 10 nearest buildings.
+Reverse Geocode(WGS84)

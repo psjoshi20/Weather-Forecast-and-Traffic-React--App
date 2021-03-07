@@ -1,0 +1,120 @@
+
+/privateapi/auth/post/getToken
+
+HTTPS Requests:
+POST /privateapi/auth/post/getToken
+
+Example Response:{
+   "access_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjUsInVzZXJfaWQiOjUsImVtYWlsIjoiY2xvc2VkYXBpdXNlcjFAc2xhLmdvdi5zZyIsImZvcmV2ZXIiOmZhbHNlLCJpc3MiOiJodHRwOlwvXC9kZi5zbWFydGdlby5zZzo4MDgwXC9hcGlcL3YyXC91c2VyXC9zZXNzaW9uIiwiaWF0IjoxNDYwNTM1NjAxLCJleHAiOjE0NjA1MzkyMDEsIm5iZiI6MTQ2MDUzNTYwMSwianRpIjoiZThjZGMxZmYxM2Y3MWVmZWU0MTQ1ZGEwNzVjYzE0Y2MifQ.gXhl_OUdufq0g_VJDrnY0kHJCU4aE8VoS3quWAqnV-w",
+   "expiry_timestamp":"1460794801"
+}
+HTML Example:<!DOCTYPE html>
+    <html>
+      <body>
+      <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>  
+      <script>
+
+        var settings = {
+            "url"  : "https://developers.onemap.sg/privateapi/auth/post/getToken", 
+            "data" : 
+                    {
+                      "email": "youremail@onemap.sg", 
+                      "password": "yourpassword"
+                    }, 
+            "async" : "true"
+        }
+
+        $.post(settings).done(function (response) {
+          document.write(response);
+        });
+
+      </script>
+
+      </body>
+    </html>
+NodeJS Example:    var request = require("request");
+
+    var options = 
+    { 
+      method: 'POST',
+      url: 'https://developers.onemap.sg/privateapi/auth/post/getToken',
+      headers: 
+       { 
+         'cache-control': 'no-cache, max-age=0',
+         'content-type': 'application/json'
+       },
+      json: { email: 'youremail@onemap.sg', password: 'yourpassword' } 
+    };
+
+    request(options, function (error, response, body) {
+      if (error) throw new Error(error);
+
+      console.log(body);
+    });
+
+
+
+
+    /commonapi/search
+
+Usage:
+/commonapi/search?searchVal={SearchText}&returnGeom={Y/N}&getAddrDetails={Y/N}&pageNum={PageNumber}
+
+Examples:
+With optional variables:
+https://developers.onemap.sg/commonapi/search?searchVal=revenue&returnGeom=Y&getAddrDetails=Y&pageNum=1
+
+Sample Response(Only 2 Results):{  
+   "found":5,
+   "totalNumPages":1,
+   "pageNum":1,
+   "results":[  
+      {  
+         "SEARCHVAL":"INLAND REVENUE AUTHORITY OF SINGAPORE (IRAS)",
+         "BLK_NO":"55",
+         "ROAD_NAME":"NEWTON ROAD",
+         "BUILDING":"INLAND REVENUE AUTHORITY OF SINGAPORE (IRAS)",
+         "ADDRESS":"55 NEWTON ROAD, SINGAPORE 307987",
+         "POSTAL":"307987",
+         "X":"28983.7537272647",
+         "Y":"33554.4361084122",
+         "LATITUDE":"1.31972890510723",
+         "LONGITUDE":"103.842158118267",
+         "LONGTITUDE":"103.842158118267"
+      },
+      {  
+         "SEARCHVAL":"REVENUE HOUSE",
+         "BLK_NO":"55",
+         "ROAD_NAME":"NEWTON ROAD",
+         "BUILDING":"REVENUE HOUSE",
+         "ADDRESS":"55 NEWTON ROAD, SINGAPORE 307987",
+         "POSTAL":"307987",
+         "X":"28977.8507137401",
+         "Y":"33547.5712691676",
+         "LATITUDE":"1.31966682211667",
+         "LONGITUDE":"103.842105076401",
+         "LONGTITUDE":"103.842105076401"
+      }
+   ]
+}
+HTML Example:<html>
+    <head>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+        <script>
+        function Cloud(){
+        $.ajax({
+        url: 'https://developers.onemap.sg/commonapi/search?searchVal=revenue&returnGeom=Y&getAddrDetails=Y&pageNum=1',
+        success: function(result){
+            //Set result to a variable for writing
+            var TrueResult = JSON.stringify(result);
+            document.write(TrueResult);
+            }});
+        }
+
+        Cloud();
+      </script>
+    </head>
+</html>

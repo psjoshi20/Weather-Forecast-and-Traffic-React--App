@@ -1,6 +1,7 @@
 import React, { useState , useEffect }  from 'react';
 import './App.css';
 import tarfficDataHash from "./Component/flattenTrafficData";
+import Address from "./Component/Address.js";
 // import flattenData from './Component/JoinArray';
 //  this temp App fotr getting traffic images from api 1 
 
@@ -20,13 +21,16 @@ import tarfficDataHash from "./Component/flattenTrafficData";
 //         return(aa1);
 //        }
 // }
+//
+
+
 function  App() {
   const [data3, setData3] = useState([]);
   
   const [timestamp, setTimestamp]=useState();
   const [timestampImage, setTimeStampImage] =useState([])  
   // timestampImage --> this state is to store flatten data with  timestamp, cameraId , image 
-  console.log("step1");
+  // console.log("step1");
 
   const getData3 =() => {
         fetch('data3.json',
@@ -49,14 +53,18 @@ function  App() {
 
   }
  
-console.log("step3");
+// console.log("step3");
 useEffect(() => {
   getData3()
+ 
  },[])
+
+  // convert location in to formated address
+
  return (
   <div className="App">
       
-      <h1>  here is json in table format  </h1>
+      <h1>  json object- table  </h1>
     <table border="1">
   
    {
@@ -71,6 +79,7 @@ useEffect(() => {
    }
   
   </table>
+  <Address />
  </div>
   );
 }
