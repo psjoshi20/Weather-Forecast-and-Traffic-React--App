@@ -1,0 +1,64 @@
+// import{ tsConverter }  from "./Component/Utility.js";
+// import DatePicker from "react-datepicker";
+
+// import "react-datepicker/dist/react-datepicker.css";
+
+// CSS Modules, react-datepicker-cssmodules.css
+// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+
+// function flattenData(data) {
+//   if(data && 
+//     data["items"] && data["items"].length > 0 && 
+//     data["items"][0]["forecasts"] && data["items"][0]["forecasts"].length > 0 ) {
+//       const a1 = data["items"][0]["forecasts"];
+//       const b1 = data["area_metadata"];
+//       // const t1 = a1.map((a1d) => { return([a1d, b1.filter((f1) => { return(f1.name === a1d.area);})[0]["label_location"] ] ) ; });
+//       const t1 = a1.map((a1d) => { return({...a1d, ...b1.filter((f1) => { return(f1.name === a1d.area);})[0]["label_location"] } ) ; });
+//       console.log("Joined data");console.log(t1);
+//       return(t1);
+//     } else {
+//       return([]);
+//     }
+// }
+
+====================================================================================
+
+appcameradump ---
+// import flattenData from './Component/JoinArray';
+//  this temp App fotr getting traffic images from api 1 
+
+// #fetch traffic API , store the json data into an object, get the path using get_in() function, flatten the data and then pass it to 
+// a component which will disply in UI in the timestap, loation format 
+// before passing to UI component conver the long and lat into area name using reverse geocoding service
+
+
+// function flatHelper (data3) {
+//   if(data3 && 
+//        data3["items"] && data3["items"].length > 0 && 
+//        data3["items"][0]["cameras"] && data3["items"][0]["cameras"].length > 0 ) { 
+//         // const aa1 = flattenTrafficData(data["items"][0]["cameras"], data[""], "","");
+//         const aa1 = data3["items"].map((xx1) => { return(flattenTrafficData(xx1["camera"], data3["timeastamp"]));});
+//         console.log("Joined data");console.log(aa1);
+//         console.log(aa1.length); console.log(aa1[0].length);
+//         return(aa1);
+//        }
+// }
+//
+========================================================
+appforecast dump
+
+
+// function flattenData(data) {
+//   if(data && 
+//     data["items"] && data["items"].length > 0 && 
+//     data["items"][0]["forecasts"] && data["items"][0]["forecasts"].length > 0 ) {
+//       const a1 = data["items"][0]["forecasts"];
+//       const b1 = data["area_metadata"];
+//       // const t1 = a1.map((a1d) => { return([a1d, b1.filter((f1) => { return(f1.name === a1d.area);})[0]["label_location"] ] ) ; });
+//       const t1 = a1.map((a1d) => { return({...a1d, ...b1.filter((f1) => { return(f1.name === a1d.area);})[0]["label_location"] } ) ; });
+//       console.log("Joined data");console.log(t1);
+//       return(t1);
+//     } else {
+//       return([]);
+//     }
+// }

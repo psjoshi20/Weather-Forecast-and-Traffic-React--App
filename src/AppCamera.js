@@ -1,34 +1,15 @@
 import React, { useState , useEffect }  from 'react';
 import './App.css';
 import tarfficDataHash from "./Component/flattenTrafficData";
-import Address from "./Component/Address.js";
-// import flattenData from './Component/JoinArray';
-//  this temp App fotr getting traffic images from api 1 
-
-// #fetch traffic API , store the json data into an object, get the path using get_in() function, flatten the data and then pass it to 
-// a component which will disply in UI in the timestap, loation format 
-// before passing to UI component conver the long and lat into area name using reverse geocoding service
-
-
-// function flatHelper (data3) {
-//   if(data3 && 
-//        data3["items"] && data3["items"].length > 0 && 
-//        data3["items"][0]["cameras"] && data3["items"][0]["cameras"].length > 0 ) { 
-//         // const aa1 = flattenTrafficData(data["items"][0]["cameras"], data[""], "","");
-//         const aa1 = data3["items"].map((xx1) => { return(flattenTrafficData(xx1["camera"], data3["timeastamp"]));});
-//         console.log("Joined data");console.log(aa1);
-//         console.log(aa1.length); console.log(aa1[0].length);
-//         return(aa1);
-//        }
-// }
-//
-
+import Address from "./Component/Address";
+import TimeStampDisp from "./Component/TimeStampDisp";
+import Header from "./Component/Header";
+import Footer from "./Component/Footer";
 
 function  App() {
   const [data3, setData3] = useState([]);
-  
-  const [timestamp, setTimestamp]=useState();
-  const [timestampImage, setTimeStampImage] =useState([])  
+  // const [timestamp, setTimestamp]=useState();
+  // const [timestampImage, setTimeStampImage] =useState([])  
   // timestampImage --> this state is to store flatten data with  timestamp, cameraId , image 
   // console.log("step1");
 
@@ -55,6 +36,7 @@ function  App() {
  
 // console.log("step3");
 useEffect(() => {
+  // fetch API here 
   getData3()
  
  },[])
@@ -63,11 +45,13 @@ useEffect(() => {
 
  return (
   <div className="App">
+    <Header />
+    <TimeStampDisp />
+     <Address />
       
       <h1>  json object- table  </h1>
     <table border="1">
-  
-   {
+     {
       // data && data.length>0 && data.map((areametadata)=><p>{areametadata.name.label_location.longitude}</p>)
     //   data3 && 
     //       data3["items"] && data3["items"].length > 0 && 
@@ -79,7 +63,7 @@ useEffect(() => {
    }
   
   </table>
-  <Address />
+ < Footer/>
  </div>
   );
 }
