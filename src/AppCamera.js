@@ -10,27 +10,10 @@ import Address from "./Component/Address.js";
 // before passing to UI component conver the long and lat into area name using reverse geocoding service
 
 
-// function flatHelper (data3) {
-//   if(data3 && 
-//        data3["items"] && data3["items"].length > 0 && 
-//        data3["items"][0]["cameras"] && data3["items"][0]["cameras"].length > 0 ) { 
-//         // const aa1 = flattenTrafficData(data["items"][0]["cameras"], data[""], "","");
-//         const aa1 = data3["items"].map((xx1) => { return(flattenTrafficData(xx1["camera"], data3["timeastamp"]));});
-//         console.log("Joined data");console.log(aa1);
-//         console.log(aa1.length); console.log(aa1[0].length);
-//         return(aa1);
-//        }
-// }
-//
-
-
 function  App() {
   const [data3, setData3] = useState([]);
   
-  const [timestamp, setTimestamp]=useState();
-  const [timestampImage, setTimeStampImage] =useState([])  
-  // timestampImage --> this state is to store flatten data with  timestamp, cameraId , image 
-  // console.log("step1");
+  console.log("step1");
 
   const getData3 =() => {
         fetch('data3.json',
@@ -42,7 +25,7 @@ function  App() {
          }
    )            
     .then(function(response) {
-      console.log(response);
+      // console.log(response);
       return response.json();
     })
     .then(function(myJson) {
@@ -75,7 +58,13 @@ useEffect(() => {
     //       data3["items"][0]["cameras"].map((vc1)=><tr><td>{vc1[0]}</td><td>{vc1[2]}</td></tr>)
           data3 && 
           Object.keys(data3).length > 0 && 
-          Object.keys(data3).map((vc1) => <tr><td>{vc1}</td><td>{data3[vc1]}</td></tr>)         
+          Object.keys(data3).map(
+            (vc1) => 
+                <tr>
+                      <td>{vc1}</td>
+                      <td>{data3[vc1]}</td>
+                </tr>
+          )         
    }
   
   </table>

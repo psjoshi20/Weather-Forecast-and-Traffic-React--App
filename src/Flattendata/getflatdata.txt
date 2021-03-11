@@ -1,0 +1,365 @@
+var fdata = {
+  "items": [
+    {
+      "update_timestamp": "2021-03-10T05:32:11+08:00",
+      "timestamp": "2021-03-10T05:03:00+08:00",
+      "forecasts": [
+        {
+          "temperature": {
+            "low": 24,
+            "high": 33
+          },
+          "date": "2021-03-11",
+          "forecast": "Afternoon thundery showers.",
+          "relative_humidity": {
+            "low": 60,
+            "high": 90
+          },
+          "wind": {
+            "speed": {
+              "low": 10,
+              "high": 20
+            },
+            "direction": "NE"
+          },
+          "timestamp": "2021-03-11T00:00:00+08:00"
+        },
+        {
+          "temperature": {
+            "low": 24,
+            "high": 33
+          },
+          "date": "2021-03-12",
+          "forecast": "Afternoon thundery showers.",
+          "relative_humidity": {
+            "low": 60,
+            "high": 90
+          },
+          "wind": {
+            "speed": {
+              "low": 5,
+              "high": 15
+            },
+            "direction": "NE"
+          },
+          "timestamp": "2021-03-12T00:00:00+08:00"
+        },
+        {
+          "temperature": {
+            "low": 24,
+            "high": 33
+          },
+          "date": "2021-03-13",
+          "forecast": "Afternoon thundery showers.",
+          "relative_humidity": {
+            "low": 60,
+            "high": 90
+          },
+          "wind": {
+            "speed": {
+              "low": 5,
+              "high": 15
+            },
+            "direction": "NNE"
+          },
+          "timestamp": "2021-03-13T00:00:00+08:00"
+        },
+        {
+          "temperature": {
+            "low": 24,
+            "high": 33
+          },
+          "date": "2021-03-14",
+          "forecast": "Afternoon thundery showers.",
+          "relative_humidity": {
+            "low": 60,
+            "high": 90
+          },
+          "wind": {
+            "speed": {
+              "low": 10,
+              "high": 20
+            },
+            "direction": "NNE"
+          },
+          "timestamp": "2021-03-14T00:00:00+08:00"
+        }
+      ]
+    }
+  ],
+  "api_info": {
+    "status": "healthy"
+  }
+}
+undefined
+console.log(Object.keys(fdata["items"][0]["forecasts"][0]["temperature"]))
+VM100:1 (2) ["low", "high"]0: "low"1: "high"length: 2__proto__: Array(0)
+undefined
+function flattenData2 (cdata, bpath, img2) {
+    //var img =["camera_id","timestam ", "image"];
+    // var img2 =[["camera_id"],["timestamp"], ["image"], ["location", "latitude"] , ["location", "longitude"]];
+    // console.log(img);
+    var rr1 = [...Array(get_in2(cdata,bpath).length).keys()];
+    // map over it and assign a varible to it
+    var images = rr1.map((i1) => { 
+                                    return(img2.map((i2) => {
+                                    return(
+                                            get_in2(cdata,
+                                            // ["items", 0 , "cameras", i1,i2]))
+                                            [..bpath, i1, ...i2]))
+                                    }))
+                                }
+    );
+    console.log(images);
+    
+    return(images);
+}
+VM110:12 Uncaught SyntaxError: Unexpected token '.'
+function flattenData2 (cdata, bpath, img2) {
+    //var img =["camera_id","timestam ", "image"];
+    // var img2 =[["camera_id"],["timestamp"], ["image"], ["location", "latitude"] , ["location", "longitude"]];
+    // console.log(img);
+    // bpath = ["items", 0 , "cameras"]
+    var rr1 = [...Array(get_in2(cdata,bpath).length).keys()];
+    // map over it and assign a varible to it
+    var images = rr1.map((i1) => { 
+                                    return(img2.map((i2) => {
+                                    return(
+                                            get_in2(cdata,
+                                            // ["items", 0 , "cameras", i1,i2]))
+                                            [...bpath, i1, ...i2]))
+                                    }))
+                                }
+    );
+    console.log(images);
+    
+    return(images);
+}
+undefined
+function flattenData2 (cdata, bpath, img2) {
+    var rr1 = [...Array(get_in2(cdata,bpath).length).keys()];
+    var images = rr1.map((i1) => { 
+                                    return(img2.map((i2) => {
+                                         return(get_in2(cdata, [...bpath, i1, ...i2]))
+                                    }))
+                                }
+    );
+    return(images);
+}
+undefined
+flattenData2(fdata, ["items",0,"forecats"], [["datestamp"],["temperature","low"]])
+VM120:2 Uncaught ReferenceError: get_in2 is not defined
+    at flattenData2 (<anonymous>:2:15)
+    at <anonymous>:1:1
+flattenData2 @ VM120:2
+(anonymous) @ VM330:1
+function get_in2(data1, path1) {
+    var ii; var retv1 = data1; var x1;
+    for(ii in path1) {
+       x1 = path1[ii];
+       retv1 = retv1[x1];
+    }
+    return(retv1);
+ }
+undefined
+function get_in2(data1, path1) {var ii; var retv1 = data1; var x1;for(ii in path1) {x1 = path1[ii];retv1 = retv1[x1];}return(retv1);}
+
+undefined
+function get_in2(data1, path1) {var ii; var retv1 = data1; var x1;for(ii in path1) {x1 = path1[ii];retv1 = retv1[x1];} ; return(retv1);}
+
+undefined
+flattenData2(fdata, ["items",0,"forecats"], [["datestamp"],["temperature","low"]])
+VM120:2 Uncaught TypeError: Cannot read property 'length' of undefined
+    at flattenData2 (<anonymous>:2:45)
+    at <anonymous>:1:1
+flattenData2 @ VM120:2
+(anonymous) @ VM360:1
+flattenData2(fdata, ["items",0,"forecasts"], [["datestamp"],["temperature","low"]])
+(4) [Array(2), Array(2), Array(2), Array(2)]0: Array(2)0: undefined1: 24length: 2__proto__: Array(0)1: (2) [undefined, 24]2: (2) [undefined, 24]3: (2) [undefined, 24]length: 4__proto__: Array(0)
+flattenData2(fdata, ["items",0,"forecasts"], [["timestamp"], ["date"], ["temperature","low"]])
+(4) [Array(3), Array(3), Array(3), Array(3)]0: (3) ["2021-03-11T00:00:00+08:00", "2021-03-11", 24]1: (3) ["2021-03-12T00:00:00+08:00", "2021-03-12", 24]2: (3) ["2021-03-13T00:00:00+08:00", "2021-03-13", 24]3: (3) ["2021-03-14T00:00:00+08:00", "2021-03-14", 24]length: 4__proto__: Array(0)var fdata = {
+  "items": [
+    {
+      "update_timestamp": "2021-03-10T05:32:11+08:00",
+      "timestamp": "2021-03-10T05:03:00+08:00",
+      "forecasts": [
+        {
+          "temperature": {
+            "low": 24,
+            "high": 33
+          },
+          "date": "2021-03-11",
+          "forecast": "Afternoon thundery showers.",
+          "relative_humidity": {
+            "low": 60,
+            "high": 90
+          },
+          "wind": {
+            "speed": {
+              "low": 10,
+              "high": 20
+            },
+            "direction": "NE"
+          },
+          "timestamp": "2021-03-11T00:00:00+08:00"
+        },
+        {
+          "temperature": {
+            "low": 24,
+            "high": 33
+          },
+          "date": "2021-03-12",
+          "forecast": "Afternoon thundery showers.",
+          "relative_humidity": {
+            "low": 60,
+            "high": 90
+          },
+          "wind": {
+            "speed": {
+              "low": 5,
+              "high": 15
+            },
+            "direction": "NE"
+          },
+          "timestamp": "2021-03-12T00:00:00+08:00"
+        },
+        {
+          "temperature": {
+            "low": 24,
+            "high": 33
+          },
+          "date": "2021-03-13",
+          "forecast": "Afternoon thundery showers.",
+          "relative_humidity": {
+            "low": 60,
+            "high": 90
+          },
+          "wind": {
+            "speed": {
+              "low": 5,
+              "high": 15
+            },
+            "direction": "NNE"
+          },
+          "timestamp": "2021-03-13T00:00:00+08:00"
+        },
+        {
+          "temperature": {
+            "low": 24,
+            "high": 33
+          },
+          "date": "2021-03-14",
+          "forecast": "Afternoon thundery showers.",
+          "relative_humidity": {
+            "low": 60,
+            "high": 90
+          },
+          "wind": {
+            "speed": {
+              "low": 10,
+              "high": 20
+            },
+            "direction": "NNE"
+          },
+          "timestamp": "2021-03-14T00:00:00+08:00"
+        }
+      ]
+    }
+  ],
+  "api_info": {
+    "status": "healthy"
+  }
+}
+undefined
+console.log(Object.keys(fdata["items"][0]["forecasts"][0]["temperature"]))
+VM100:1 (2) ["low", "high"]0: "low"1: "high"length: 2__proto__: Array(0)
+undefined
+function flattenData2 (cdata, bpath, img2) {
+    //var img =["camera_id","timestam ", "image"];
+    // var img2 =[["camera_id"],["timestamp"], ["image"], ["location", "latitude"] , ["location", "longitude"]];
+    // console.log(img);
+    var rr1 = [...Array(get_in2(cdata,bpath).length).keys()];
+    // map over it and assign a varible to it
+    var images = rr1.map((i1) => { 
+                                    return(img2.map((i2) => {
+                                    return(
+                                            get_in2(cdata,
+                                            // ["items", 0 , "cameras", i1,i2]))
+                                            [..bpath, i1, ...i2]))
+                                    }))
+                                }
+    );
+    console.log(images);
+    
+    return(images);
+}
+
+function flattenData2 (cdata, bpath, img2) {
+    //var img =["camera_id","timestam ", "image"];
+    // var img2 =[["camera_id"],["timestamp"], ["image"], ["location", "latitude"] , ["location", "longitude"]];
+    // console.log(img);
+    // bpath = ["items", 0 , "cameras"]
+    var rr1 = [...Array(get_in2(cdata,bpath).length).keys()];
+    // map over it and assign a varible to it
+    var images = rr1.map((i1) => { 
+                                    return(img2.map((i2) => {
+                                    return(
+                                            get_in2(cdata,
+                                            // ["items", 0 , "cameras", i1,i2]))
+                                            [...bpath, i1, ...i2]))
+                                    }))
+                                }
+    );
+    console.log(images);
+    
+    return(images);
+}
+undefined
+function flattenData2 (cdata, bpath, img2) {
+    var rr1 = [...Array(get_in2(cdata,bpath).length).keys()];
+    var images = rr1.map((i1) => { 
+                                    return(img2.map((i2) => {
+                                         return(get_in2(cdata, [...bpath, i1, ...i2]))
+                                    }))
+                                }
+    );
+    return(images);
+}
+undefined
+flattenData2(fdata, ["items",0,"forecats"], [["datestamp"],["temperature","low"]])
+VM120:2 Uncaught ReferenceError: get_in2 is not defined
+    at flattenData2 (<anonymous>:2:15)
+    at <anonymous>:1:1
+flattenData2 @ VM120:2
+(anonymous) @ VM330:1
+function get_in2(data1, path1) {
+    var ii; var retv1 = data1; var x1;
+    for(ii in path1) {
+       x1 = path1[ii];
+       retv1 = retv1[x1];
+    }
+    return(retv1);
+ }
+undefined
+function get_in2(data1, path1) {var ii; var retv1 = data1; var x1;for(ii in path1) {x1 = path1[ii];retv1 = retv1[x1];}return(retv1);}
+
+undefined
+function get_in2(data1, path1) {var ii; var retv1 = data1; var x1;for(ii in path1) {x1 = path1[ii];retv1 = retv1[x1];} ; return(retv1);}
+
+undefined
+flattenData2(fdata, ["items",0,"forecats"], [["datestamp"],["temperature","low"]])
+VM120:2 Uncaught TypeError: Cannot read property 'length' of undefined
+    at flattenData2 (<anonymous>:2:45)
+    at <anonymous>:1:1
+flattenData2 @ VM120:2
+(anonymous) @ VM360:1
+flattenData2(fdata, ["items",0,"forecasts"], [["datestamp"],["temperature","low"]])
+(4) [Array(2), Array(2), Array(2), Array(2)]0: Array(2)0: undefined1: 24length: 2__proto__: Array(0)1: (2) [undefined, 24]2: (2) [undefined, 24]3: (2) [undefined, 24]length: 4__proto__: Array(0)
+flattenData2(fdata, ["items",0,"forecasts"], [["timestamp"], ["date"], ["temperature","low"]])
+(4) [Array(3), Array(3), Array(3), Array(3)]0: (3) ["2021-03-11T00:00:00+08:00", "2021-03-11", 24]1: (3) ["2021-03-12T00:00:00+08:00", "2021-03-12", 24]2: (3) ["2021-03-13T00:00:00+08:00", "2021-03-13", 24]3: (3) ["2021-03-14T00:00:00+08:00", "2021-03-14", 24]length: 4__proto__: Array(0)getandflattendatafrom array
+
+flattenData2(fdata, ["items",0,"forecasts"], [["datestamp"],["temperature","low"],["temperature","high"],["forecast"])
+
+
+flattenData2(fdata, ["items",0,"forecasts"], [["timestamp"],["temperature","low"],["temperature","high"],["forecast"] ,["relative_humidity","low"]])
+

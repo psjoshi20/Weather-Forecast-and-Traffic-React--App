@@ -2,28 +2,7 @@ import React, { useState , useEffect }  from 'react';
 import './App.css';
 import flattenData from './Component/JoinArray';
 import {  WeatherTable } from './Component/WeatherDisp';
-// import{ tsConverter }  from "./Component/Utility.js";
-// import DatePicker from "react-datepicker";
 
-// import "react-datepicker/dist/react-datepicker.css";
-
-// CSS Modules, react-datepicker-cssmodules.css
-// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-
-// function flattenData(data) {
-//   if(data && 
-//     data["items"] && data["items"].length > 0 && 
-//     data["items"][0]["forecasts"] && data["items"][0]["forecasts"].length > 0 ) {
-//       const a1 = data["items"][0]["forecasts"];
-//       const b1 = data["area_metadata"];
-//       // const t1 = a1.map((a1d) => { return([a1d, b1.filter((f1) => { return(f1.name === a1d.area);})[0]["label_location"] ] ) ; });
-//       const t1 = a1.map((a1d) => { return({...a1d, ...b1.filter((f1) => { return(f1.name === a1d.area);})[0]["label_location"] } ) ; });
-//       console.log("Joined data");console.log(t1);
-//       return(t1);
-//     } else {
-//       return([]);
-//     }
-// }
 function flatHelper (data) {
   if(data && 
        data["items"] && data["items"].length > 0 && 
@@ -40,18 +19,9 @@ function flatHelper (data) {
 
 
 function  App() {
-  const [data, setData] = useState([]);
-  const [flatData, setFlatData] = useState([]);
-  const [name, setName] =useState(null);
-  const [timestamp, setTimestamp]=useState();
-  const [selectedDate , setSelectedDate] = useState(null);
-  let handleColor = time => {
-    return time.getHours() > 12 ? "text-success" : "text-error";
+   const [flatData, setFlatData] = useState([]);
 
-  };
-  // console.log("step1");
-
-  const getData =() => {
+   const getData =() => {
         fetch('data2.json',
         {
           headers : { 
@@ -61,43 +31,29 @@ function  App() {
          }
    )            
     .then(function(response) {
-      console.log(response);
+      // console.log(response);
       return response.json();
     })
     .then(function(myJson) {
       console.log(myJson)
       setFlatData(flatHelper(myJson));
-      // flatData
-    });
+     });
 
   }
-  
- 
+   
 // console.log("step3")
 useEffect(() => {
   getData()
  },[])
+
+
  return (
+   
   <div className="App">
-      <p>Press click to Select date and Time  </p>
-      <DatePicker 
-      showTimeSelect
-      onChange={date => setSelectedDate(date)} 
-      dateFormat ='dd/MM/yyyy'
-      isClearable
-      showYearDropdown
-      scrollableMonthYearDropdown
-      timeClassName={handleColor}
-  
-         />     
       <h1>  here is json in table format  </h1>
       <div >
         {
-              // data && data.length>0 && data.map((areametadata)=><p>{areametadata.name.label_location.longitude}</p>)
-              // data && 
-              //     data["items"] && data["items"].length > 0 && 
-              //     data["items"][0]["forecasts"] && data["items"][0]["forecasts"].length > 0 && 
-              //     data["items"][0]["forecasts"].map((forecast)=><tr><td>{forecast["area"]}</td><td>{forecast["forecast"]}</td></tr>)
+              
             flatData && flatData.length > 0 && 
             flatData.map((fd1) => { return(<WeatherTable warr1={fd1}></WeatherTable>) } )
         }
